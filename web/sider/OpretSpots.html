@@ -1,50 +1,9 @@
-
-<!DOCTYPE html>
-<html ng-app="myctrl">
-    <head>  
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-route.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-        <script src="OpretSpotController.js"></script>
-    </head>
+<html>
     <body>
-        
-        <style>
-            .typeahead-demo .custom-popup-wrapper {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                z-index: 1000;
-                display: none;
-                background-color: #f9f9f9;
-            }
-            
-            .typeahead-demo .custom-popup-wrapper > .message {
-                padding: 10px 20px;
-                border-bottom: 1px solid #ddd;
-                color: #868686;
-            }
-            
-            .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
-                position: static;
-                float: none;
-                display: block;
-                min-width: 160px;
-                background-color: transparent;
-                border: none;
-                border-radius: 0;
-                box-shadow: none;
-            }
-        </style>
-        
-        
         
         <div ng-controller="spotController">
 
+            
             <h3>Opret nyt spot</h3>
             <form name="test.spotForm" ng-submit="submitData(spot, 'ajaxSubmitResult1')" novalidate >
                 
@@ -94,7 +53,7 @@
             
         </div>
         
-        
+      
         
     </body>
 </html>
