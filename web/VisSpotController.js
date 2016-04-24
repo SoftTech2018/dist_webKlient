@@ -66,69 +66,30 @@ app.controller('spotController', function($scope, $http){
     $scope.spot.tank = false;
     $scope.spot.ab = false;
     $scope.spot.vogntog = false; 
+    $scope.spot.longitude = "";
+    $scope.spot.latitude = "";
     
-    $scope.forslag = [];
-    
-    var iterate = function(item){
-        return item.adressebetegnelse;
-    };
     
     $scope.getAdress = function(val) {
         console.log("getADr er kaldt");
         return $http.get('http://dawa.aws.dk/adresser?q='+val, {   
  
         }).then(function(response){
-            return iterate(response.data);  
+            $scope.adresser = response.data;
+        console.log($scope.adresser[0]);    
+        return $scope.adresser;
+           
         });
     };
     
-   
     
-    
-    // console.log(response.data[0].adressebetegnelse);    
-       
-    
-  
-    //response.data.adressebetegnelse;
-  
-    
-    
-    //    function getAdress(){
-    //        console.log("Getadress kaldt");
-    //        $http({
-    //            method  : 'GET',
-    //            url     : 'http://dawa.aws.dk/adresser?q=' + $scope.adresse
-    //        }).then(function succesCallback(svar){
-    // 
-    //           $scope.adr = svar.data;
-    //          
-    //           angular.forEach($scope.adr, function(item){
-    //               console.log(item.adgangsbetegnelse);
-    //            });
-    //            
-    //            for(var i = 0; i < $scope.adr.length; i++) {
-    //                $scope.object = $scope.adr[i];
-    //                $scope.forslag.push($scope.object.adressebetegnelse);
-    //                }
-    //            
-    //Sti til koordinater:
-    //$scope.object.adgangsadresse.adgangspunkt.koordinater
-           
-           
-    //           $scope.adgangspunkt = svar.data[0].adgangsadresse.adgangspunkt.koordinater;
-    //            console.log($scope.adgangspunkt);            
-    //            console.log(typeof($scope.adr));
-    //        }, function errorCallback(svar) {   
-    //            console.log("kan ikke hente adresser");
-    //        });
-        
-        
-    //}
-
-    
-
-
-  
+    $scope.setkoord = function(adresse){
+            $scope.spot.longitude = adresse.adgangsadresse.adgangspunkt.koordinater[0];
+            console.log($scope.longitude);
+            $scope.spot.latitude = adresse.adgangsadresse.adgangspunkt.koordinater[1];
+            console.log($scope.latitude);
+    }
+ 
     //Efter submit overskrives form med tomme værdier 
     var tomForm = {
         adresse: "",
@@ -141,22 +102,17 @@ app.controller('spotController', function($scope, $http){
         ab : false,
         vogntog : false
     };
-   
-    //Skal laves om 
-    var jsonSpot = JSON.stringify($scope.spot);
-   
-    console.log(jsonSpot);
+    
    
     $scope.submitData = function() {
-       
+        var jsonSpot = JSON.stringify($scope.spot);
+        console.log(jsonSpot);
         console.log($scope.spot);
-        $scope.adresse = $scope.spot.adresse; 
-        console.log($scope.adresse);
-        $scope.getAdress();
+     
         
         $http({
             method  : 'POST',
-            url     : 'http://jsonplaceholder.typicode.com/posts',
+            url     : 'http://localhost:8080/ConvoyServer/webresources/convoy/create/spot',
             data    :  jsonSpot
         })
                 .success(function(data) {

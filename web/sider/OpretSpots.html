@@ -9,8 +9,10 @@
                 
                 <!--Adresse-felt - Kan bruges til at hente længde/breddegrader via dawa? skal IKKE gemmes i object-->
                 <label for="adresse">Skriv adresse:</label>
-                <input id="adresse" type="text" name="adresse" typeahead="adress for adress in getAdress($viewValue)" ng-model="spot.adresse" required /><br/> 
-                <pre>Model: {{result | json }}</pre>
+                <input id="adresse" type="text" name="adresse" typeahead-on-select="setkoord($item)" typeahead="adresser as adresser.adressebetegnelse for adresser in getAdress($viewValue)" ng-model="$scope.adresser"typeahead-editable="false" required/><br/> 
+                
+                
+                <pre style="visibility: hidden">Model: {{result | json }}</pre>
                 
                 <!--navn -->
                 <label for="stednavn">Stednavn:</label>
