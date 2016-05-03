@@ -8,46 +8,45 @@
             <form name="test.spotForm" ng-submit="submitData(spot, 'ajaxSubmitResult1')" novalidate >
                 
                 <!--Adresse-felt - Kan bruges til at hente længde/breddegrader via dawa? skal IKKE gemmes i object-->
-                <label for="adresse">Skriv adresse:</label>
-                <input id="adresse" type="text" name="adresse" typeahead-on-select="setkoord($item)" typeahead="adresser as adresser.adressebetegnelse for adresser in getAdress($viewValue)" ng-model="$scope.adresser"typeahead-editable="false" required/><br/> 
+                <label for="test.spotform.adresser">Skriv adresse:</label>
+                <input id="test.spotform.adresser" type="text" typeahead-on-select="setkoord($item)" typeahead="adresser as adresser.adressebetegnelse for adresser in getAdress($viewValue)" typeahead-editable="false" ng-model="test.spotForm.adresser"required/><br/> 
                 
                 
-                <pre style="visibility: hidden">Model: {{result | json }}</pre>
+               <!-- <pre style="visibility: hidden">Model: {{result | json }}</pre>-->
                 
                 <!--navn -->
                 <label for="stednavn">Stednavn:</label>
-                <input id="stednavn" type="text" name="lastName" ng-model="spot.stednavn" required /><br/> 
+                <input id="stednavn" type="text" name="lastName" ng-model="spot.name" required /><br/> 
                 
                 <!---toilet-->
                 <label for="toilet">Toilet</label>
-                <input id="toilet" type="checkbox" name="fac" value="toilet" ng-model="spot.toilet">  <br> 
+                <input id="toilet" type="checkbox" name="fac" value="toilet" ng-model="spot.wc">  <br> 
                 
                 <!--bad-->
                 <label for="bad"> Bad </label>
-                <input id="bad" type="checkbox" name="fac" value="bad" ng-model="spot.bad"> <br> 
+                <input id="bad" type="checkbox" name="fac" value="bad" ng-model="spot.bath"> <br> 
                 
                 <!--mad-->
                 <label for="bad"> Mad </label>
-                <input id="mad" type="checkbox" name="fac" value="bad" ng-model="spot.mad"> <br>
+                <input id="mad" type="checkbox" name="fac" value="bad" ng-model="spot.food"> <br>
                 
                 <!--seng-->
                 <label for="seng">seng</label>
-                <input id="seng" type="checkbox" name="fac" value="seng" ng-model="spot.seng"> <br> 
+                <input id="seng" type="checkbox" name="fac" value="seng" ng-model="spot.bed"> <br> 
                 
                 <!--fuel-->
                 <label for="tank">tank:</label>
-                <input id="tank" type="checkbox" name="fac" value="tank" ng-model="spot.tank"> <br> 
+                <input id="tank" type="checkbox" name="fac" value="tank" ng-model="spot.fuel"> <br> 
                 
                 <!--addblue-->
                 <label for="adBlue">adBlue</label>
-                <input id="adBlue" type="checkbox" name="fac" value="ab" ng-model="spot.ab"><br> 
+                <input id="adBlue" type="checkbox" name="fac" value="ab" ng-model="spot.addBlue"><br> 
                 
                 <!--roadtrain-->
                 <label for="vogntog">Vogntog</label>
-                <input id="vogntog" type="checkbox" name="fac" value="vogntog" ng-model="spot.vogntog"> <br> 
+                <input id="vogntog" type="checkbox" name="fac" value="vogntog" ng-model="spot.roadtrain"> <br> 
                 
-                <input id="id" type="checkbox" style="visibility: hidden" name="fac" value="0" ng-model="spot.id"> <br> 
-                
+                 
                 <br/>
                 <button type="submit"  ng-disabled="spotForm.$invalid">Gem</button>
                 
