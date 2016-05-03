@@ -8,15 +8,13 @@
             <form name="test.spotForm" ng-submit="submitData(spot, 'ajaxSubmitResult1')" novalidate >
                 
                 <!--Adresse-felt - Kan bruges til at hente længde/breddegrader via dawa? skal IKKE gemmes i object-->
-                <label for="test.spotform.adresser">Skriv adresse:</label>
+                <label for="test.spotform.adresser">Skriv adresse*:</label>
                 <input id="test.spotform.adresser" type="text" typeahead-on-select="setkoord($item)" typeahead="adresser as adresser.adressebetegnelse for adresser in getAdress($viewValue)" typeahead-editable="false" ng-model="test.spotForm.adresser"required/><br/> 
-                
-                
-               <!-- <pre style="visibility: hidden">Model: {{result | json }}</pre>-->
+               
                 
                 <!--navn -->
-                <label for="stednavn">Stednavn:</label>
-                <input id="stednavn" type="text" name="lastName" ng-model="spot.name" required /><br/> 
+                <label for="stednavn">Skriv stednavn*:</label>
+                <input id="test.spotForm.stednavn" type="text" name="lastName" ng-model="spot.name" required /><br/> 
                 
                 <!---toilet-->
                 <label for="toilet">Toilet</label>
@@ -48,7 +46,7 @@
                 
                  
                 <br/>
-                <button type="submit"  ng-disabled="spotForm.$invalid">Gem</button>
+                <button type="submit"  ng-disabled="test.spotForm.$invalid">Gem</button>
                 
             </form>
             
