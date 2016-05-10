@@ -9,8 +9,7 @@
                 
                 <!--Adresse-felt - Kan bruges til at hente længde/breddegrader via dawa? skal IKKE gemmes i object-->
                 <label for="test.spotform.adresser">Skriv adresse*:</label>
-                <input id="test.spotform.adresser" type="text" typeahead-on-select="setkoord($item)" typeahead="adresser as adresser.adressebetegnelse for adresser in getAdress($viewValue)" typeahead-editable="false" ng-model="test.spotForm.adresser"required/><br/> 
-               
+                <input id="test.spotform.adresser" type="text" typeahead-on-select="setkoord($item)" typeahead="adresser as adresser.adressebetegnelse for adresser in getAdress($viewValue)" typeahead-editable="false" ng-model="test.spotForm.adresser" required autocomplete="off" /><br/> 
                 
                 <!--navn -->
                 <label for="stednavn">Skriv stednavn*:</label>
@@ -46,8 +45,9 @@
                 
                  
                 <br/>
-                <button type="submit"  ng-disabled="test.spotForm.$invalid">Gem</button>
-                
+                <button type="submit" >Gem</button>
+            
+                <!--ng-disabled="test.spotForm.$invalid"-->
             </form>
             
         </div>
