@@ -2,14 +2,10 @@
 var app = angular.module('jsonapp', ['ngRoute', 'booleanFilter','ngAnimate','ui.bootstrap']);
 
 app.config(function ($routeProvider, $httpProvider) {
-    
-    $httpProvider.defaults.useXDomain = true;
   
-   
-    
     $routeProvider
             .when('/', {
-                templateUrl: 'sider/VisSpots.html',
+        templateUrl: 'sider/VisSpots.html',
         controller: 'jsonController'
     }).when('/Opret', {
         templateUrl: 'sider/OpretSpots.html',
@@ -20,19 +16,15 @@ app.config(function ($routeProvider, $httpProvider) {
 });
 
 
-
-
 app.controller('jsonController', function($http,$scope){
     $http({
         method: 'GET',
-        url: 'http://default-environment.xyik5z2rn3.eu-central-1.elasticbeanstalk.com/webresources/convoy/get_all',
-        
+        url: 'http://convoy.eu-central-1.elasticbeanstalk.com/webresources/convoy/get_all'  
     }).success(function(data1){
-        
-        
+     
         $scope.all = data1; 
-        console.log(data1); 
         $scope.data = [];
+        
         angular.forEach($scope.all, function(item){
             if(item.deleted === false){
                 $scope.data.push(item);
@@ -42,10 +34,6 @@ app.controller('jsonController', function($http,$scope){
     });
        
 });
-
-
-
-
 
 
 angular.module('booleanFilter', []).filter('checkmark', function() {
@@ -77,24 +65,7 @@ $scope.spot.addBlue = false;
 $scope.spot.roadtrain = false; 
 $scope.spot.longitude = -1;
 $scope.spot.latitude = -1;
-    
-    
-$scope.getAdress = function(val) {
-    return $http.get('http://default-environment.m2ypbqk78s.us-west-2.elasticbeanstalk.com/webresources/convoy/get_dawa/'+val, {   
-    }).then(function(response){
-        $scope.adresser = response.data;
-        return $scope.adresser;
-    });
-};
-    
-    
-    
-$scope.setkoord = function(adresse){
-    $scope.spot.longitude = adresse.adgangsadresse.adgangspunkt.koordinater[0];
-    $scope.spot.latitude = adresse.adgangsadresse.adgangspunkt.koordinater[1];
-       
-};
- 
+
 //Efter submit overskrives form med tomme værdier 
 var tomForm = {
     adresser: "",
@@ -108,32 +79,39 @@ var tomForm = {
     vogntog : false
 };
     
+$scope.getAdress = function(val) {
+    return $http.get('http://convoy.eu-central-1.elasticbeanstalk.com/webresources/convoy/get_dawa/'+val, {   
+    }).then(function(response){
+        $scope.adresser = response.data;
+        return $scope.adresser;
+    });
+};
+    
+    
+$scope.setkoord = function(adresse){
+    $scope.spot.longitude = adresse.adgangsadresse.adgangspunkt.koordinater[0];
+    $scope.spot.latitude = adresse.adgangsadresse.adgangspunkt.koordinater[1];   
+};
+ 
    
 $scope.submitData = function() {
-     var jsonSpot = JSON.stringify($scope.spot);
-   
-    
-//    var jsonSpot = JSON.stringify($scope.spot);
-//        
+    var jsonSpot = JSON.stringify($scope.spot);
+        
     if($scope.spot.longitude === -1 || $scope.spot.latitude === -1){
         window.alert("Fejl i adresse - vælg fra dropdown");
     }
     else{
         $http({
             method  : 'POST',
-            url     : 'http://default-environment.xyik5z2rn3.eu-central-1.elasticbeanstalk.com/webresources/convoy/create/spot',
-            data    :  jsonSpot,
-            crossDomain : true
+            url     : 'http://convoy.eu-central-1.elasticbeanstalk.com/webresources/convoy/create/spot',
+            data    :  jsonSpot
         }).then(function successCallback(data){
             window.alert("Spot er oprettet!");
-            console.log("Spot er oprettet!: "+ jsonSpot);
-
-            $scope.test.spotForm.$setPristine();   
+  
             $scope.test.spotForm.adresser = "";         
             $scope.spot = angular.copy(tomForm);
         }, function errorCallback(data) {
             window.alert("Fejl i oprettelse af spot. Prøv igen!");
-        
         });
     }
 };

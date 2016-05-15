@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 
 <html>
-<body>
-<div >        
-      
-        <div ng-controller="jsonController">   
-            <h4><a href="#Opret"><i class="fa fa-shield"></i>Opret nyt spot</a></h4>
+    <body>
+        <div >        
             
-            <h1> Oversigt over spots</h1>
-             
-            <table class="table" border="1">
-                <tr> 
-                 <th>Name</th> 
-                 <th>addBlue</th>
-                 <th>Food</th> 
-                 <th>WC</th> 
-                 <th>Bed</th> 
-                 <th>Bath</th> 
-                 <th>Fuel</th> 
-                 <th>Roadtrain</th> 
-                 
+            <div ng-controller="jsonController">   
+                <h4><a href="#Opret"><i class="fa fa-shield"></i>Opret nyt spot</a></h4>
+                
+                <h1> Oversigt over spots</h1>
+                
+                <table class="table" border="1">
+                    <tr> 
+                        <th>Name</th> 
+                        <th>addBlue</th>
+                        <th>Food</th> 
+                        <th>WC</th> 
+                        <th>Bed</th> 
+                        <th>Bath</th> 
+                        <th>Fuel</th> 
+                        <th>Roadtrain</th> 
+                        
                     <tr ng-repeat="item in data"> 
                         
-                     <td>{{item.name }}</td> 
-                    <td> {{item.addBlue | checkmark}}</td>  
-                    <td>{{item.food | checkmark}}</td>
-                     <td>{{item.wc | checkmark }} </td> 
-                     <td>{{item.bed | checkmark}}</td> 
-                     <td>{{item.bath | checkmark}}</td> 
-                     <td>{{item.fuel | checkmark}}</td> 
-                     <td>{{item.roadtrain| checkmark}}</td> 
-                     
-                    
+                        <td>{{item.name  }}</td> 
+                        
+                        <td> {{item.addBlue | checkmark}}</td>  
+                        <td>{{item.food | checkmark}}</td>
+                        <td>{{item.wc | checkmark }} </td> 
+                        <td>{{item.bed | checkmark}}</td> 
+                        <td>{{item.bath | checkmark}}</td> 
+                        <td>{{item.fuel | checkmark}}</td> 
+                        <td>{{item.roadtrain| checkmark}}</td> 
+                        
+                        
                     </tr> 
-            </table>
+                </table>
+                
+                
+            </div>
             
-            
-        </div>
-   
-</div>   
-   
+        </div>   
+        
     </body>
-
+    
 </html>

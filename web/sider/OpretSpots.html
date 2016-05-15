@@ -4,10 +4,12 @@
         <div ng-controller="spotController">
 
             
+             <h4><a href="#/"><i class="fa fa-shield"></i>Tilbage til forsiden</a></h4>
+            
             <h3>Opret nyt spot</h3>
             <form name="test.spotForm" ng-submit="submitData(spot, 'ajaxSubmitResult1')" novalidate >
                 
-                <!--Adresse-felt - Kan bruges til at hente længde/breddegrader via dawa? skal IKKE gemmes i object-->
+                <!--Adresse-felt - Kan bruges til at hente længde/breddegrader via dawa skal IKKE gemmes i object-->
                 <label for="test.spotform.adresser">Skriv adresse*:</label>
                 <input id="test.spotform.adresser" type="text" typeahead-on-select="setkoord($item)" typeahead="adresser as adresser.adressebetegnelse for adresser in getAdress($viewValue)" typeahead-editable="false" ng-model="test.spotForm.adresser" required autocomplete="off" /><br/> 
                 
@@ -28,15 +30,15 @@
                 <input id="mad" type="checkbox" name="fac" value="bad" ng-model="spot.food"> <br>
                 
                 <!--seng-->
-                <label for="seng">seng</label>
+                <label for="seng">Seng</label>
                 <input id="seng" type="checkbox" name="fac" value="seng" ng-model="spot.bed"> <br> 
                 
                 <!--fuel-->
-                <label for="tank">tank:</label>
+                <label for="tank">Tank:</label>
                 <input id="tank" type="checkbox" name="fac" value="tank" ng-model="spot.fuel"> <br> 
                 
                 <!--addblue-->
-                <label for="adBlue">adBlue</label>
+                <label for="adBlue">AdBlue</label>
                 <input id="adBlue" type="checkbox" name="fac" value="ab" ng-model="spot.addBlue"><br> 
                 
                 <!--roadtrain-->
@@ -51,8 +53,6 @@
             </form>
             
         </div>
-        
-      
         
     </body>
 </html>
